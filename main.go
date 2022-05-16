@@ -25,8 +25,12 @@ func main() {
 	iBukuRepo := repository.NewBukuRepo(db)
 	iBukuController := controller.NewBukuController(iBukuRepo)
 	// Routes
-	e.GET("/", iBukuController.GetAllBook)
-	e.POST("/", iBukuController.InsertBook)
+	e.GET("/buku", iBukuController.GetAllBook)
+	e.GET("/buku/:Nama_buku", iBukuController.GetBookByName)
+	e.POST("/buku", iBukuController.InsertBook)
+	e.DELETE("/buku/:Nama_buku", iBukuController.DeleteBookByName)
+
+	e.POST("/operator", iBukuController.InsertOperator)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":1323"))
